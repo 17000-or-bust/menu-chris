@@ -1,18 +1,18 @@
 # 17001 || BUST: Reservations API v1.0
 
-### `GET /api/menu/:meal/:id`
-Returns a menu array at a given restaurant id and meal type.
+### `GET /api/menu/:meal`
+Returns a menu based on meal type.
 
  **URL Params**
-  * `id` _(Number)_ : ID of the restaurant to retrieve all relevant details
   * `meal` _(String)_ : type of meal menu to retrieve
 
  **Success Response:**
   * **Status Code:** 200
-  * **Content:**  Menu array with objects conforming to the following format:
+  * **Content:**  Array with objects conforming to the following format:
 
    |Key              |Type    |
    |:--------------- |:------ |
+   |`id`             |Number  |
    |`name`           |String  |
    |`description`    |String  |
    |`price`          |Number  |
@@ -21,8 +21,30 @@ Returns a menu array at a given restaurant id and meal type.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
- ### `POST /api/menu/`
-Returns the id of the restaurant created in the database.
+### `GET /api/menu/:meal/:id`
+Returns a menu item based on meal type and id.
+
+ **URL Params**
+  * `id` _(String)_ : id to retrieve
+  * `meal` _(String)_ : type of meal menu to retrieve
+
+ **Success Response:**
+  * **Status Code:** 200
+  * **Content:**  Object conforming to the following format:
+
+   |Key              |Type    |
+   |:--------------- |:------ |
+   |`id`             |Number  |
+   |`name`           |String  |
+   |`description`    |String  |
+   |`price`          |Number  |
+
+ **Error Response:**
+  * **Code:** 400 Bad Request error
+  * **Content:** `{ error : "Bad Request error" }`
+
+ ### `POST /api/menu/:meal`
+Posts a menu item into a table. 
 
  **Payload Params**
   *Object conforming to the following format:
@@ -37,14 +59,14 @@ Returns the id of the restaurant created in the database.
 
  **Success Response:**
   * **Status Code:** 201
-  * **Content:** `id`
+  * **Content:** Result
 
  **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
- ### `PUT /api/menu/:id`
-Returns the id of the restaurant edited in the database.
+ ### `PUT /api/menu/:meal/:id`
+Edits a item in a table.
 
  **URL Params**
   * `id` _(Number)_ : ID of the reservation to update
@@ -63,21 +85,21 @@ Returns the id of the restaurant edited in the database.
 
  **Success Response:**
   * **Status Code:** 201
-  * **Content:** `id`
+  * **Content:** Result
 
  **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
- ### `DELETE /api/photos/:id`
-Returns the restaurant deleted from the database.
+ ### `DELETE /api/menu/:meal/:id`
+Deletes restaurant from table.
 
  **URL Params**
   * `id` _(Number)_ : ID of the restaurant to delete
 
  **Success Response:**
   * **Status Code:** 200
-  * **Content:** id of deleted restaurant
+  * **Content:** Result
 
  **Error Response:**
   * **Code:** 400 Bad Request error
