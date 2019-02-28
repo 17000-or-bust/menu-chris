@@ -1,6 +1,13 @@
 
 
-USE menu; 
+USE customers; 
+
+CREATE TABLE restaurant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lunch_id INT,
+    dinner_id INT,
+    dessert_id INT
+);
 
 CREATE TABLE lunch (
     id INT AUTO_INCREMENT,
