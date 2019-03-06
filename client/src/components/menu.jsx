@@ -20,9 +20,11 @@ class Menu extends React.Component {
   }
 
   updateMenu(event) {
+    const urlArray = document.URL.split('/');
+    const productID = Number(urlArray[urlArray.length - 1]);
     let temp = event === undefined ? 'lunch' : event.target.value;
     let meal = temp;
-    ajax.renderMenu(meal, (err, data) => {
+    ajax.renderMenu(meal, productID, (err, data) => {
       if (err) {
         console.log(err);
         return;

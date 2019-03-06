@@ -1,4 +1,5 @@
 const fs = require('fs');
+const moment = require('moment');
 const data = require('./dummy_data.js');
 
 var lunchItems = data.lunch.name;
@@ -12,6 +13,7 @@ var writeStream = fs.createWriteStream('./lunchMenu2.csv');
 var writeStream2 = fs.createWriteStream('./dinnerMenu.csv');
 var writeStream3 = fs.createWriteStream('./dessertMenu.csv');
 
+console.log('STARTING GENERATION', moment().format('HH:mm:ss'));
 
 var buffer = "";
 writeStream.write("restaurant_id, name, description, price \n");
@@ -73,6 +75,9 @@ for(var restaurants = 0; restaurants < 10000001; restaurants++){
   }
 }
 writeStream3.end();
+
+
+console.log('ENDING GENERATION', moment().format('HH:mm:ss'));
 
 
 
