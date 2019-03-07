@@ -4,7 +4,7 @@ export default {
 
   renderMenu: (meal, id, callback) => {
 
-    let tempURL = `api/menu/${meal}/${id}`;
+    let tempURL = `/api/menu/${meal}/${id}`;
     console.log('temp: ', tempURL);
 
     $.get({
