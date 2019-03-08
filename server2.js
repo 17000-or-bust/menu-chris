@@ -12,9 +12,9 @@ app.use(express.static('./client/dist/'));
 
 
 app.get('/api/menu/:meal/:id', (req, res) => {
-    var meals = req.params.meal;
-    var id = req.params.id;
-    connection.query(`select * from ${meals} WHERE restaurant_id = ${id}`, function (err, result) {
+    var values = [req.params.id];
+    var meal = req.params.meal;
+    connection.query(`select * from ${meal} WHERE restaurant_id = $1`, values, function (err, result) {
       if (err) {
         console.log("error message: ", err);
         return;
@@ -24,14 +24,10 @@ app.get('/api/menu/:meal/:id', (req, res) => {
 })
 
 app.post('/api/menu/:meal', (req, res) => {
-  var type = req.params.meal;
-  var id = req.body.restaurant_id;
-  var name = req.body.name;
-  var description = req.body.description;
-  var price = req.body.price; 
-
-  var query = `INSERT INTO ${type} (restaurant_id, name, description, price) VALUES (${id}, '${name}', '${description}', ${price})`;  
-  connection.query(query, function (err, result) {
+  var values = [req.body.restaurant_id, req.body.name, req.body.description, req.body.price];
+  var meal = req.params.meal;
+  var query = `INSERT INTO ${meal} (restaurant_id, name, description, price) VALUES ($1, $2, $3, $4)`;  
+  connection.query(query, values, function (err, result) {
     if (err) {
       console.log("error message: ", err);
       return;
