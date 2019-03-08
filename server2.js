@@ -3,7 +3,7 @@ var connection = require('./database/newIndex.js');
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
-// const connection = require("./server/db/");    
+
 
 var PORT = 3000;
 
@@ -39,29 +39,4 @@ res.sendFile(__dirname + '/client/dist/index.html')});
 
 
 
-// app.put('/api/menu/:meal/:id', (req, res) => {
-//     var type = req.params.meal;
-//     var id = req.params.id;   
-//     var query = `UPDATE ${type} SET name = "Chris" WHERE id = ${id}`;
-//     connection.connection.query(query, function (err, result) {
-//       if (err) {
-//         console.log("error message: ", err);
-//         return;
-//       }
-//       res.send(result);
-//     });
-//  });  
 
-//  app.delete('/api/menu/:meal/:id', (req, res) => {
-//     var type = req.params.meal;
-//     var id = req.params.id;   
-//     let queryStr = `DELETE FROM ${type} WHERE restaurant_id = ${id}`;
-//     connection.query(queryStr, function (err, result) {
-//       if (err) {
-//         console.log("error message: ", err);
-//         return;
-//       }
-//       res.send(result);
-//     });   
-//  })  
-  
